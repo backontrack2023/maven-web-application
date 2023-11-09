@@ -98,13 +98,13 @@
 	    <repository>
 	      <id>nexus</id>
 	      <name>Mithun Technologies Releases Nexus Repository</name>
-	      <url>http://72.31.7.4:8081/repository/maven-releases/</url>
+	      <url>http://13.127.20.52:8081/repository/cgdevopsbot/</url>
 	    </repository>
 	    
 	    <snapshotRepository>
 	      <id>nexus</id>
 	      <name>Mithun Technologies Snapshot Nexus Repository </name>
-	      <url>http://72.31.7.4:8081/repository/maven-snapshots/</url>
+	      <url>http://13.127.20.52:8081/repository/cgdevopsbotsnapshot/</url>
 	    </snapshotRepository>
 	    
 	</distributionManagement>
