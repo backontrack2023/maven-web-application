@@ -1,0 +1,25 @@
+node{
+
+def mavenHome=tool name: 'maven3.9.3'
+stage('Checkoutcode'){
+git credentialsId: '09bdd247-738b-4947-9fba-e4793b9f9013', url: 'https://github.com/backontrack2023/maven-web-application.git'
+}
+ 
+stage('genaratepackage'){
+sh "${mavenHome}/bin/mvn clean package"
+}
+stage('ExecuteSonarQubeReport'){
+sh "${mavenHome}/bin/mvn clean sonar:sonar"
+    
+}
+
+stage('UploadArtifactsInotNexus'){
+sh "${mavenHome}/bin/mvn clean  deploy"
+}
+
+stage('DeploAppIntoTomcatServer'){
+sshagent(['215fbc2a-4e8a-46f8-b4e2-c715fb90e181']) {
+    sh "scp -o StrictHostKeyChecking=no target/maven-web-application.war ec2-user@172.31.45.58:/opt/apache-tomcat-9.0.82/webapps/"
+}
+}
+}
